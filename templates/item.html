@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-md-12">
+    <div class="item name">
+      <h2>{{item.name}}</h2>
+      <h4>{{item.price}}</h4>
+      <p>{{item.description}}</p>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-md-6">
+        <div class="col-md-3">
+            <h2> <a href="{{url_for('editMenuItem',category_name=item.category_name,item_name=item.name)}}">Edit</a> </h2>
+        </div>
+        <div class="col-md-3">
+          <h2> <a href="{{url_for('deleteMenuItem',category_name=item.category_name,item_name=item.name)}}">Delete</a></h2>
+
+        </div>
+      </div>
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "main.html" %}
+{% block content %}
+	<div class="row">
+		<div class="col-md-12 titles text-center">
+			<h1> Edit Category  </h1>
+
+		</div>
+	</div>
+	<div class="row text-center">
+		<div class="col-md-4">
+		</div>
+		<div class="col-md-4 font form">
+			<form  action="{{url_for('editCategory',category_name=category.name)}}" method="post">
+
+				<table class="form">
+					<tr>
+						<td>
+							Category name
+						</td>
+						<td>
+							<input class="text-font" type="text" name="name" value="{{category.name}}">
+						</td>
+					</tr>
+				</table>
+				<button type="submit" class="form-buttons">
+					<span>Save</span>
+				</button>
+			</form>
+			<form class="text-center">
+				<button class="form-buttons" formaction="{{url_for('showCategories')}}">Cancle</button>
+			</form>
+
+		</div>
+
+	</div>
+{% endblock %}

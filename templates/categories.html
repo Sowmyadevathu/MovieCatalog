@@ -1,0 +1,77 @@
+{% extends "main.html" %}
+{% block content %}
+
+<div class = 'flash'>
+		      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+</div>
+<div class="row">
+	<div class="col-md-12 text-left add-category-link">
+		<a href="{{url_for('newCategory')}}">Add new category</a>
+
+	</div>
+
+</div>
+
+<div class="row">
+	<div class="col-md-12  titles categories-sub-title">
+		<h2>Categories</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+
+		 <table class="table-hover category-table">
+			 {% for category in categories %}
+			 <tr class="change-color">
+				 <td class="col-md-3 text-capitalize">
+         	<a class="font" href="{{url_for('showMenu',category_name = category.name)}}">{{category.name}}</a>
+				 </td>
+         <td class="col-md-2 text-left">
+					 <a class="font" href="{{url_for('editCategory',category_name = category.name)}}">Edit</a>
+					 <a class="font" href="{{url_for('deleteCategory',category_name = category.name)}}">Delete</a>
+				 </td>
+			 </tr>
+			 {% endfor %}
+		 </table>
+
+	</div>
+
+</div>
+<div class="row">
+	<div class="col-md-12 text-center titles sub-title">
+		<h2>Recently added movies</h2>
+	</div>
+</div>
+<div class="col-md-12" >
+	<div class="row movie-names">
+		<!-- <div class="col-md-3"> -->
+			{% for item in items %}
+			<div class = "col-md-3" text-center >
+				<a href="{{url_for('showItem',category_name=item.category_name,item_name=item.name)}}">
+
+					 <h3> {{item.name}} </h3>
+
+
+				</a>
+
+			</div>
+
+			{% endfor %}
+		<!-- </div> -->
+
+	</div>
+
+</div>
+
+
+{% endblock %}

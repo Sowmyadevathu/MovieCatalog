@@ -1,0 +1,42 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="row">
+	<div class="col-md-6  titles categories-sub-title">
+		<h2>Categories</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+
+		 <table class="table-hover category-table">
+			 {% for category in categories %}
+			 <tr>
+			 	<td class="col-md-3 text-capitalize">
+          <a class="font" href="{{url_for('showMenu',category_name=category.name)}}"><h4>{{category.name}}</h4></a>
+				</td>
+			 </tr>
+        {% endfor %}
+		 </table>
+
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6 text-left titles sub-title">
+		<h2>Recently added movies</h2>
+	</div>
+</div>
+<div class="col-md-9" >
+	<div class="row movie-names">
+		<!-- <div class="col-md-3"> -->
+			{% for item in items %}
+			<div class = "col-md-3">
+				<a href="{{url_for('showItem',category_name=item.category_name,item_name=item.name)}}">
+
+					 <h3> {{item.name}} </h3>
+				</a>
+			</div>
+			{% endfor %}
+	</div>
+</div>
+
+{% endblock %}

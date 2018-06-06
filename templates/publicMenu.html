@@ -1,0 +1,78 @@
+{% extends "main.html" %}
+{% block content %}
+
+
+	<div class="row divider green">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner menu">
+		<div class="col-md-11 col-md-offset-1 padding-none">
+			<h1>{{ category.name }}</h1>
+
+		</div>
+	</div>
+	<div class="row padding-top padding-bottom">
+		<div class="col-md-1"></div>
+		<div class="col-md-11 padding-none">
+
+		</div>
+		<div class="col-md-7"></div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+					<ul>
+						{% for message in messages %}
+							 <li> <strong> {{ message }} </strong> </li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+			{% endwith %}
+		</div>
+	</div>
+	<table style="width: 50%;border:none;table-layout: fixed;border-spacing: 0px ;border-collapse: collapse;">
+        <tr>
+
+            <th style="border: none;padding: 0;white-space: nowrap;">
+                <div>
+                    <h2>Categories</h2></div>
+            </th>
+
+            <th style=" border: none;padding: 0;white-space: nowrap;">
+                <div>
+                    <h2>{{category.name}} Items ({{items|length}} items)</h2> </div>
+            </th>
+
+        </tr>
+        <tr>
+            <td style="vertical-align: top ;border: none;border-width: 0px;padding: 0;white-space: nowrap; width: 100%">
+
+                {% for category in categories %}
+                <a href="{{url_for('showMenu', category_name = category.name)}}">
+                    <div>
+                        <h3 style="color: red">{{category.name}}</h3>
+                    </div>
+                </a>
+                {% endfor %}
+
+            </td>
+            <td style="vertical-align: top ;border: none;border-width: 0px;padding: 0;white-space: nowrap; width: 100%">
+                {% if items !=[] %}
+				 {% for i in items %}
+                <div>
+                    <a href="{{url_for('showItem', category_name= category.name,item_name=i.name)}}">
+
+                        <h3 style="color: green">{{i.name}}</h3></div>
+                </a>
+
+                 {% endfor %}
+				{% endif %}
+
+            </td>
+
+        </tr>
+
+    </table>
+
+{% endblock %}
